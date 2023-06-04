@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "fbjgnotizapp": {
+      "hosting": {
+        "fbjgnotizapp": [
+          "fbjgnotizapp"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "fbjgnotizapp"
+  }
+}
