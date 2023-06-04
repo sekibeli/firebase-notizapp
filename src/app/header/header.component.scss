@@ -1,0 +1,14 @@
+.head {
+    height: 100px;
+    background-color: rgb(9, 99, 226);
+   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    span {
+        color: white;
+        font-size: 2em;
+    }
+
+}
