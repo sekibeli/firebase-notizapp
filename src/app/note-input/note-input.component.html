@@ -1,7 +1,19 @@
 <div class="mainInputDiv">
 <div class="inputDiv">
-  <input [(ngModel)]="title" type="text" placeholder="Bitte Titel eingeben ..."/>
-  <input class="inputfield" type="textarea" placeholder="Bitte Notiz eingeben ..."/>
-  <button>Memo speichern</button>
+
+    <mat-form-field class="example-full-width">
+        <mat-label>Memo Titel</mat-label>
+        <input matNativeControl="text" matInput placeholder="Titel des Memos" [(ngModel)]="title">
+      </mat-form-field>
+    
+      <mat-form-field class="example-full-width">
+        <mat-label>Beschreibung</mat-label>
+        <textarea matInput placeholder="Beschreibung des Memos" [(ngModel)]="description"></textarea>
+      </mat-form-field>
+
+  <div>
+    <button mat-raised-button color="primary" (click)="addNote()">Neues Memo speichern</button>
+    
+    </div>
 </div>
 </div>

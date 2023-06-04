@@ -1,1 +1,10 @@
-<p>note works!</p>
+<div class="noteContainer">
+
+    <mat-card *ngFor="let memo of notes; let i = index;">
+        <mat-card-content>
+            <mat-card-title> {{ memo.title }}</mat-card-title>
+            <mat-card-content>{{ memo.description }}</mat-card-content>
+            <button (click)="deleteNote(memo,i)">Delete</button>
+        </mat-card-content>
+      </mat-card>
+</div>
