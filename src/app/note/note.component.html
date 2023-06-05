@@ -1,10 +1,21 @@
 <div class="noteContainer">
+  <mat-card *ngFor="let memo of notes; let i = index">
+    <mat-card-content>
+      <mat-card-title> {{ memo.title }}</mat-card-title>
+      <mat-card-content>{{ memo.description }}</mat-card-content>
+      <!-- <button (click)="deleteNote(memo)">Delete</button> -->
 
-    <mat-card *ngFor="let memo of notes; let i = index;">
-        <mat-card-content>
-            <mat-card-title> {{ memo.title }}</mat-card-title>
-            <mat-card-content>{{ memo.description }}</mat-card-content>
-            <button (click)="deleteNote(memo)">Delete</button>
-        </mat-card-content>
-      </mat-card>
+      
+
+
+
+      <div class="example-button-container">
+        <button (click)="deleteNote(memo)" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+
+
+    </mat-card-content>
+  </mat-card>
 </div>

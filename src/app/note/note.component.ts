@@ -43,12 +43,13 @@ export class NoteComponent {
     const querySnapshot = await getDocs(query(coll, where('title', '==', memo.title)));
 
     // Durchlaufe die Ergebnisse der Datenabfrage
-    querySnapshot.forEach((doc) => {
-      const docId = doc.id;
+    querySnapshot.forEach((docu) => {
+      const docId = docu.id;
       console.log("Die Dokument-ID lautet:", docId);
 
-      // Dokument löschen
+     // Dokument löschen
       const docRef = doc(coll, docId);
+     
      
       deleteDoc(docRef)
         .then(() => {
