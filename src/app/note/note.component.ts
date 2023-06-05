@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
-import { Firestore, collection, collectionData, getDoc, getFirestore } from '@angular/fire/firestore';
+import { Firestore, collection, collectionData, getDoc, setDoc, getFirestore, getDocs, query, where } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { deleteDoc, doc } from '@firebase/firestore';
-
+import { deleteDoc } from '@firebase/firestore';
+import { doc } from '@angular/fire/firestore';
 import { Action } from 'rxjs/internal/scheduler/Action';
 
 
@@ -20,10 +20,7 @@ export class NoteComponent {
   title = '';
   description = '';
   collRef;
-  
 
-
-  
 
   constructor() {
     const coll = collection(this.firestore, 'notes');
@@ -32,71 +29,50 @@ export class NoteComponent {
     this.notes$.subscribe((allNotes) => {
       console.log('Aktuelle Memos: ', allNotes);
       this.notes = allNotes;
-    
-        });
 
-    
+    });
   }
 
-  async deleteNote(documentId, index) {
+  async deleteNote(memo) {
     const db = getFirestore();
-
-  }}
-
-
+    const coll = collection(this.firestore, 'notes');
+    console.log(memo);
 
 
+    // Datenabfrage, um das Dokument mit den bekannten Werten zu finden
+    const querySnapshot = await getDocs(query(coll, where('title', '==', memo.title)));
 
+    // Durchlaufe die Ergebnisse der Datenabfrage
+    querySnapshot.forEach((doc) => {
+      const docId = doc.id;
+      console.log("Die Dokument-ID lautet:", docId);
 
-
-
-
-
-
-
-
-
-
-
-  
-    // console.log(db);
-    // const collRef = doc(db, "notes", `${documentId}`);
-    
-
-   
-    
-
-    // deleteDoc(collRef)
-    // .then(() => {
-    //   console.log('Dokument erfolgreich gelöscht!');
-    //   this.notes.splice(index, 1); // Entfernt das gelöschte Element aus der Anzeige
+      // Dokument löschen
+      const docRef = doc(coll, docId);
      
-    // })
-    // .catch((error) => {
-    //   console.error('Fehler beim Löschen des Dokuments:', error);
-    // });
+      deleteDoc(docRef)
+        .then(() => {
+          console.log("Dokument erfolgreich gelöscht.");
+        })
+        .catch((error) => {
+          console.error("Fehler beim Löschen des Dokuments:", error);
+        });
+    });
 
-    
-    // await deleteDoc(doc(this.collRef, documentId['title'], documentId['description']));
+  }
+}
 
-    
-   
 
-    //  deleteDoc(doc(this.coll, documentId.title, documentId.description));
 
-    // await deleteDoc(doc(this.coll, documentId['title'], documentId['description']))
 
-    // await deleteDoc(doc(collRef[i]))
 
-    // this.coll.doc(this.notes[i]).delete();
 
-    // deleteDoc(this.coll[i]);
 
-    // this.collRef.doc(documentId).delete()
-    //   .then(() => {
-    //     console.log('Dokument erfolgreich gelöscht!');
-    //   })
-    //   .catch((error) => {
-    //     console.error('Fehler beim Löschen des Dokuments:', error);
-    //   });
-  
+
+
+
+
+
+
+
+
