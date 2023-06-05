@@ -40,7 +40,7 @@ export class NoteComponent {
 
 
     // Datenabfrage, um das Dokument mit den bekannten Werten zu finden
-    const querySnapshot = await getDocs(query(coll, where('title', '==', memo.title)));
+    const querySnapshot = await getDocs(query(coll, where('title', '==', memo.title), where('description','==', memo.description)));
 
     // Durchlaufe die Ergebnisse der Datenabfrage
     querySnapshot.forEach((docu) => {
