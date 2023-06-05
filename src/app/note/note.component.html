@@ -4,18 +4,18 @@
       <mat-card-title> {{ memo.title }}</mat-card-title>
       <mat-card-content>{{ memo.description }}</mat-card-content>
       <!-- <button (click)="deleteNote(memo)">Delete</button> -->
-
-      
-
-
-
+    </mat-card-content>
+    <div class="delete-container">
       <div class="example-button-container">
-        <button (click)="deleteNote(memo)" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon">
+        <button
+          (click)="deleteNote(memo)"
+          mat-mini-fab
+          color="primary"
+          aria-label="Example icon button with a menu icon"
+        >
           <mat-icon>delete</mat-icon>
         </button>
       </div>
-
-
-    </mat-card-content>
+    </div>
   </mat-card>
 </div>
