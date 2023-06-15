@@ -1,35 +1,47 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Firestore, collection, collectionData, doc, setDoc, getDoc, DocumentSnapshot, addDoc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { NoteService } from '../services/note.service';
+import { NgForm } from '@angular/forms';
+import { INote } from '../models/note.model';
 
 @Component({
   selector: 'app-note-input',
   templateUrl: './note-input.component.html',
   styleUrls: ['./note-input.component.scss']
 })
-export class NoteInputComponent {
+export class NoteInputComponent implements OnInit {
   firestore: Firestore = inject(Firestore);
-  title = '';
-  description = '';
-  docIDs = [];
-docID;
-  constructor(){
+  note: INote = {title: '', description: ''};
+//   title = '';
+//   description = '';
+//   docIDs = [];
+// docID;
+  constructor(private noteService: NoteService){
     
   }
 
-  async addNote(){
+  ngOnInit(){
+    
+  }
 
-    const coll = collection(this.firestore, 'notes');
-    const note = {title: this.title , description: this.description};
-    const docRef = doc(coll);
+  onSubmit(form: NgForm){
+    this.noteService.addNote(form.value)
+    .then(()=> form.reset());
+  }
+  // async addNote(){
+
+  //   const coll = collection(this.firestore, 'notes');
+  //   const note = {title: this.title , description: this.description};
+  //   const docRef = doc(coll);
  
-    addDoc(coll, note)
-    .then((docRef)=> {
-     this.docID = docRef.id;
-      console.log(this.docID);
-      console.log();
-    })
-    console.log(note);
+  //   addDoc(coll, note)
+  //   .then((docRef)=> {
+  //    this.docID = docRef.id;
+  //     console.log(this.docID);
+  //     console.log();
+  //   })
+  //   console.log(note);
     
 
     // const coll = collection(this.firestore, 'notes');
@@ -46,8 +58,8 @@ docID;
     
 
 
-    this.title = '';
-    this.description = '';
+    // this.title = '';
+    // this.description = '';
 
   }
-}
+

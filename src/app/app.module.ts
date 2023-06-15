@@ -19,6 +19,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { EditNoteComponent } from './modal/edit-note/edit-note.component';
 
 
 
@@ -28,7 +30,8 @@ import {MatIconModule} from '@angular/material/icon';
     AppComponent,
     HeaderComponent,
     NoteComponent,
-    NoteInputComponent
+    NoteInputComponent,
+    EditNoteComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +47,8 @@ import {MatIconModule} from '@angular/material/icon';
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),
-    provideFirestore(() => getFirestore())
+    provideFirestore(() => getFirestore()),
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

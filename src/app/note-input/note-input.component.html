@@ -1,7 +1,21 @@
 <div class="mainInputDiv">
 <div class="inputDiv">
+<h4> Füge eine neue Notiz hinzu</h4>
+  <form #noteForm="ngForm" (ngSubmit)="onSubmit(noteForm)">
+    <div class="mb-3">
+      <label for="title" class="form-label">Titel</label>
+      <input type="text" class="form-control" id="inputTitle" name="title" #name="ngModel" [(ngModel)]="note.title" placeholder="Titel" required>
+     
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Beschreibung</label>
+      <textarea class="form-control" id="inputDescription" name="description" #name="ngModel" [(ngModel)]="note.description" placeholder="Beschreibung" rows="3" required></textarea>
+    </div>
+   
+    <button type="submit" class="btn btn-primary">Speichern</button>
+  </form>
 
-    <mat-form-field class="example-full-width">
+    <!-- <mat-form-field class="example-full-width">
         <mat-label>Memo Titel</mat-label>
         <input matNativeControl="text" matInput placeholder="Titel des Memos" [(ngModel)]="title">
       </mat-form-field>
@@ -14,6 +28,6 @@
   <div>
     <button mat-raised-button color="primary" (click)="addNote()">Neues Memo speichern</button>
     
-    </div>
+    </div> -->
 </div>
 </div>
